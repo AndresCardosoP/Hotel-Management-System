@@ -1,0 +1,38 @@
+<!bookings html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Bookings</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Booking listing -->
+        <div class="listing">
+            <h2>List of Bookings</h2>
+            <ul>
+                <li>Booking ID: 123, Customer: John Doe, Room: Room 101, Date: 2024-03-14</li>
+                <li>Booking ID: 124, Customer: Jane Smith, Room: Room 102, Date: 2024-03-15</li>
+                <!-- More bookings can be added dynamically -->
+            </ul>
+        </div>
+        
+        <!-- Add booking form -->
+        <div class="form">
+            <h2>Add Booking</h2>
+            <form th:action="@{/addBooking}" method="post">
+                <!-- Booking form fields -->
+                <button type="submit">Add Booking</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
