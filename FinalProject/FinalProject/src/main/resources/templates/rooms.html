@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rooms</title>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <style>
+        .room img {
+            height: 400px; /* Set the height to 400 pixels */
+            width: auto; /* Let the width adjust based on the aspect ratio */
+            max-width: 100%; /* Ensure the width does not exceed the container width */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rooms</h1>
+        <nav>
+            <ul>
+                <li><a href="homepage.html">Home</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Room listing -->
+        <div class="listing">
+            <h2>List of Rooms</h2>
+            <div class="room">
+                <img src="room1.jpg" alt="Room 101">
+                <h3>Room 101</h3>
+            </div>
+            <div class="room">
+                <img src="room2.jpg" alt="Room 102">
+                <h3>Room 102</h3>
+            </div>
+            <!-- More rooms can be added dynamically -->
+        </div>
+        
+        <!-- Add room form -->
+        <div class="form">
+            <h2>Add Room</h2>
+            <form th:action="@{/addRoom}" method="post">
+                <label for="roomNumber">Room Number:</label>
+                <input type="text" id="roomNumber" name="roomNumber" required>
+                <button type="submit">Add Room</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
