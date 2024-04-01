@@ -1,6 +1,5 @@
 package com.webdevuoit3230.FinalProject.controller;
 
-
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +10,12 @@ import com.webdevuoit3230.FinalProject.model.Booking;
 import java.util.ArrayList;
 import java.util.List;
 
+@Controller
+@RequestMapping("/booking")
 public class BookingController {
-
+    // Display the task submission form
+    @GetMapping
+    public String displayTaskForm() {
+        return "bookings";
+    }
 }
