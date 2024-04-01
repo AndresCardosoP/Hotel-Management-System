@@ -7,5 +7,5 @@ import com.webdevuoit3230.FinalProject.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-
+	
 }

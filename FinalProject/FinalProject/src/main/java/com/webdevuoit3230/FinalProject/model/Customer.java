@@ -1,28 +1,38 @@
 package com.webdevuoit3230.FinalProject.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Customer {
-    private long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private int phoneNumber;
     private String email;
 
-    // Constructor
+    // Constructors, getters, and setters
+
+    // Default constructor
     public Customer() {
     }
 
-    public Customer(long id, String name, int phoneNumber, String email) {
-        this.id = id;
+    // Parameterized constructor
+    public Customer(String name, int phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }
 
-    // Getters and Setters
-    public long getId() {
+    // Getters and setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
