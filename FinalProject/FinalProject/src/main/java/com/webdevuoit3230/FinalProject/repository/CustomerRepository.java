@@ -1,5 +1,11 @@
 package com.webdevuoit3230.FinalProject.repository;
 
-public class CustomerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.webdevuoit3230.FinalProject.model.Customer;
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
 }

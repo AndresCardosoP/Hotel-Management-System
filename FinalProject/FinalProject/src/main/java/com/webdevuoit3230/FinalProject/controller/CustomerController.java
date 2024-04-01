@@ -1,23 +1,34 @@
 package com.webdevuoit3230.FinalProject.controller;
 
-import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import com.webdevuoit3230.FinalProject.model.Customer;
-import java.util.ArrayList;
-import java.util.List;
+import com.webdevuoit3230.FinalProject.service.CustomerService;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/customers")
 public class CustomerController {
-	
-	@GetMapping
-	public String displayTaskForm()
-	{
-		return "customers"; 
+	private final CustomerService customerService;
+
+	@Autowired
+	public CustomerController(CustomerService customerService) {
+		this.customerService = customerService;
 	}
-	
+
+	@GetMapping
+	public String listCustomers(Model model) {
+		model.addAttribute("customers", customerService.getAllCustomers());
+		return "customers"; // Refers to `customers.html`
+	}
+
+	@PostMapping("/addCustomer")
+	public String addCustomer(Customer customer) {
+		customerService.addCustomer(customer);
+		return "redirect:/customers";
+	}
 }
