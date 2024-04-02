@@ -46,9 +46,9 @@ nav ul li a:hover {
 }
 
 /* Form styling */
-form {
+.form {
     background-color: #f9f9f9;
-    padding: 20px;
+    padding: 2%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
@@ -60,7 +60,23 @@ form label {
 }
 
 form input[type="text"] {
-    width: calc(100% - 20px);
+    width: calc(100% - 50%);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+form input[type="number"] {
+    width: calc(100% - 50%);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+form input[type="email"] {
+    width: calc(100% - 50%);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -73,8 +89,11 @@ form button {
     border: none;
     padding: 10px 20px;
     border-radius: 4px;
+    margin-bottom: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: block;
+    margin: 0 auto;
 }
 
 form button:hover {
