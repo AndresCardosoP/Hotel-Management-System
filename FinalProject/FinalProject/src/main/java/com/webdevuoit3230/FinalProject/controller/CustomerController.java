@@ -58,9 +58,11 @@ public class CustomerController {
         if (customerList == null || customerList.isEmpty()) {
             System.out.println("No tasks found.");
         } else {
-            for (Customer c : customerList) {
-                System.out.println("Task: " + c.getName());
-            }
+        	for (Customer customer : customerList) {
+        	    System.out.println("Customer Name: " + customer.getName());
+        	    System.out.println("Customer Phone Number: " + customer.getPhoneNumber());
+        	    System.out.println("Customer Email: " + customer.getEmail());
+        	}
         }
         return "rooms"; 
     }
