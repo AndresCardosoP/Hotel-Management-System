@@ -6,22 +6,36 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.webdevuoit3230.FinalProject.model.Booking;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
-@RequestMapping("/booking")
-public class BookingController {
-    // Display the task submission form
+@RequestMapping("/home")
+public class HomeController {
     @GetMapping
-    public String displayBookingpage() {
-        return "bookings";
+    public String displayTaskForm() {
+        return "homepage";
     }
     
-    @GetMapping("/home")
+    @GetMapping("/customers")
     public String displayCustomerpage() {
-    	return "homepage";
+    	return "customers";
     }
+    
+    @GetMapping("/service")
+    public String displayServicepage() {
+    	return "services";
+    }
+    
+    @GetMapping("/booking")
+    public String displayBookingpage() {
+    	return "bookings";
+    }
+    
+    @GetMapping("/rooms")
+    public String displayRoompage() {
+    	return "rooms";
+    }
+    
 }

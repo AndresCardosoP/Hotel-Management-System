@@ -16,7 +16,7 @@ import java.util.List;
 public class ProvidedServiceController {
 	
 	@GetMapping
-	public String displayTaskForm()
+	public String displayServicepage()
 	{
 		return "services";
 	}

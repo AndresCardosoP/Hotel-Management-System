@@ -15,8 +15,13 @@ import java.util.List;
 public class RoomController {
 	
 	@GetMapping
-	public String disaplyTaskForm()
+	public String displayRoompage()
 	{
 		return "rooms";
 	}
+	
+    @GetMapping("/home")
+    public String displayCustomerpage() {
+    	return "homepage";
+    }
 }

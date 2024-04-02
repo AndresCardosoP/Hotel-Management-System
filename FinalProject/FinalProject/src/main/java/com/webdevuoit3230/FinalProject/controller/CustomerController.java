@@ -31,4 +31,9 @@ public class CustomerController {
 		customerService.addCustomer(customer);
 		return "redirect:/customers";
 	}
+	
+    @GetMapping("/home")
+    public String displayCustomerpage() {
+    	return "homepage";
+    }
 }
