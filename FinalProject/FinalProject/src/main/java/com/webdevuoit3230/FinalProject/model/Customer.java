@@ -11,7 +11,7 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
 
     // Constructors, getters, and setters
@@ -21,7 +21,7 @@ public class Customer {
     }
 
     // Parameterized constructor
-    public Customer(String name, int phoneNumber, String email) {
+    public Customer(String name, String phoneNumber, String email) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -44,11 +44,11 @@ public class Customer {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
