@@ -1,42 +1,43 @@
 package com.webdevuoit3230.FinalProject.controller;
 
-import jakarta.servlet.http.HttpSession;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import com.webdevuoit3230.FinalProject.model.Booking;
+import com.webdevuoit3230.FinalProject.model.Room;
 import com.webdevuoit3230.FinalProject.service.BookingService;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import com.webdevuoit3230.FinalProject.service.RoomService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-
-
 @Controller
+@RequestMapping("/bookings")
 public class BookingController {
     private final BookingService bookingService;
+    private final RoomService roomService;
 
     @Autowired
-    public BookingController(BookingService bookingService) {
+    public BookingController(BookingService bookingService, RoomService roomService) {
         this.bookingService = bookingService;
+        this.roomService = roomService;
     }
 
-    @GetMapping("/bookings")
+    @GetMapping
     public String listBookings(Model model) {
-        model.addAttribute("bookings", bookingService.getAllBookings());
-        return "bookings"; // Name of the HTML template
+        model.addAttribute("bookings", bookingService.findAllBookings());
+        model.addAttribute("newBooking", new Booking());
+        model.addAttribute("rooms", roomService.findAllRooms());
+        return "bookings";
     }
 
-    @PostMapping("/addBooking")
-    public String addBooking(@ModelAttribute Booking booking) {
-        bookingService.addBooking(booking);
+    @PostMapping
+    public String addBooking(@ModelAttribute("newBooking") Booking booking, @RequestParam Long roomId) {
+        Room room = roomService.findRoomById(roomId);
+        if (room != null) {
+            booking.setRoom(room);
+            bookingService.saveBooking(booking);
+        }
         return "redirect:/bookings";
     }
-
-    // Other mappings as needed
 }

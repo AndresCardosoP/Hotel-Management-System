@@ -1,13 +1,11 @@
 package com.webdevuoit3230.FinalProject.service;
 
+import com.webdevuoit3230.FinalProject.model.Booking;
+import com.webdevuoit3230.FinalProject.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.webdevuoit3230.FinalProject.model.Booking;
-import com.webdevuoit3230.FinalProject.repository.BookingRepository;
 import java.util.List;
-
-
 
 @Service
 public class BookingService {
@@ -18,13 +16,15 @@ public class BookingService {
         this.bookingRepository = bookingRepository;
     }
 
-    public Booking addBooking(Booking booking) {
-        return bookingRepository.save(booking);
-    }
-
-    public List<Booking> getAllBookings() {
+    public List<Booking> findAllBookings() {
         return bookingRepository.findAll();
     }
 
-    // Other methods as needed
+    public Booking saveBooking(Booking booking) {
+        return bookingRepository.save(booking);
+    }
+
+    public Booking findBookingById(Long id) {
+        return bookingRepository.findById(id).orElse(null);
+    }
 }

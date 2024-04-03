@@ -1,47 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooms</title>
-    <link rel="stylesheet" type="text/css" href="/style.css"/>
-    <style>
-        .room img {
-            height: 400px; /* Set the height to 400 pixels */
-            width: auto; /* Let the width adjust based on the aspect ratio */
-            max-width: 100%; /* Ensure the width does not exceed the container width */
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
     <div class="container">
         <h1>Rooms</h1>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/bookings}">Bookings</a></li>
+                <li><a href="/customers">Customers</a></li>
+                <li><a href="/service">Services</a></li>
             </ul>
         </nav>
         
         <!-- Room listing -->
         <div class="listing">
             <h2>List of Rooms</h2>
-            <div class="room">
-                <img src="/room1.jpg" alt="Room 101">
-                <h3>Room 101</h3>
-            </div>
-            <div class="room">
-                <img src="/room2.jpg" alt="Room 102">
-                <h3>Room 102</h3>
-            </div>
-            <!-- More rooms can be added dynamically -->
+            <ul>
+                <li th:each="room : ${rooms}">
+                    <span th:text="${room.roomNumber}">Room Number</span> - 
+                    Type: <span th:text="${room.type}">Type</span> - 
+                    Price: <span th:text="${room.price}">Price</span>
+                </li>
+            </ul>
         </div>
         
         <!-- Add room form -->
         <div class="form">
             <h2>Add Room</h2>
-            <form th:action="@{/addRoom}" method="post">
+            <form th:action="@{/rooms}" method="post" th:object="${newRoom}">
                 <label for="roomNumber">Room Number:</label>
-                <input type="text" id="roomNumber" name="roomNumber" required>
+                <input type="text" id="roomNumber" name="roomNumber" required th:field="*{roomNumber}"><br>
+                
+                <label for="type">Type:</label>
+                <input type="text" id="type" name="type" required th:field="*{type}"><br>
+                
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required th:field="*{price}"><br>
+                
                 <button type="submit">Add Room</button>
             </form>
         </div>

@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookings</title>
-    <link rel="stylesheet" type="text/css" href="/style.css"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 </head>
 <body>
     <div class="container">
         <h1>Bookings</h1>
         <nav>
             <ul>
-                <li><a href="/home">Home</a></li>
+                <li><a th:href="@{/home}">Home</a></li>
+                <li><a th:href="@{/rooms}">Rooms</a></li>
+                <li><a href="/customers">Customers</a></li>
+                <li><a href="/service">Services</a></li>
             </ul>
         </nav>
         
@@ -20,10 +23,9 @@
             <h2>List of Bookings</h2>
             <ul>
                 <li th:each="booking : ${bookings}">
-                    Booking ID: <span th:text="${booking.id}"></span>,
-                    Customer ID: <span th:text="${booking.customerId}"></span>,
-                    Room ID: <span th:text="${booking.roomId}"></span>,
-                    Date: <span th:text="${#dates.format(booking.date, 'yyyy-MM-dd')}"></span>
+                    <span th:text="${booking.startDate}">Start Date</span> to 
+                    <span th:text="${booking.endDate}">End Date</span> - 
+                    Room: <span th:text="${booking.room.roomNumber}">Room Number</span>
                 </li>
             </ul>
         </div>
@@ -31,15 +33,21 @@
         <!-- Add booking form -->
         <div class="form">
             <h2>Add Booking</h2>
-            <form th:action="@{/addBooking}" method="post">
+            <form th:action="@{/bookings}" method="post" th:object="${newBooking}">
+                <label for="roomId">Room:</label>
+                <select id="roomId" name="roomId" required>
+                    <option value="" disabled selected>Select a room</option>
+                    <option th:each="room : ${rooms}" th:value="${room.id}" th:text="${room.roomNumber}">Room Number</option>
+                </select><br>
+                
                 <label for="customerId">Customer ID:</label>
-                <input type="text" id="customerId" name="customerId"><br>
+                <input type="number" id="customerId" name="customerId" required th:field="*{customerId}"><br>
                 
-                <label for="roomId">Room ID:</label>
-                <input type="text" id="roomId" name="roomId"><br>
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate" name="startDate" required th:field="*{startDate}"><br>
                 
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date"><br>
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate" name="endDate" required th:field="*{endDate}"><br>
                 
                 <button type="submit">Add Booking</button>
             </form>
