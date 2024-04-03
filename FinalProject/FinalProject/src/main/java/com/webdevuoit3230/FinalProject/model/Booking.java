@@ -4,78 +4,61 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.util.Date;
 
+@Entity
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private long customerId;
-    private long roomId;
-    private String startDate;
-    private String endDate;
+    private Long id;
+    private Long customerId;
+    private Long roomId;
 
-    // Constructor
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date date;
+
+    // Constructors
     public Booking() {
     }
 
-    public Booking(long id, long customerId, long roomId, String startDate, String endDate) {
+    public Booking(Long id, Long customerId, Long roomId, Date date) {
         this.id = id;
         this.customerId = customerId;
         this.roomId = roomId;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.date = date;
     }
 
     // Getters and Setters
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(long customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
-    public long getRoomId() {
+    public Long getRoomId() {
         return roomId;
     }
 
-    public void setRoomId(long roomId) {
+    public void setRoomId(Long roomId) {
         this.roomId = roomId;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public Date getDate() {
+        return date;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    // toString() method
-    @Override
-    public String toString() {
-        return "Booking{" +
-                "id=" + id +
-                ", customerId=" + customerId +
-                ", roomId=" + roomId +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                '}';
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

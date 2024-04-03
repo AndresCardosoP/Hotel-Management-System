@@ -1,4 +1,4 @@
-<!bookings html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -19,9 +19,12 @@
         <div class="listing">
             <h2>List of Bookings</h2>
             <ul>
-                <li>Booking ID: 123, Customer: John Doe, Room: Room 101, Date: 2024-03-14</li>
-                <li>Booking ID: 124, Customer: Jane Smith, Room: Room 102, Date: 2024-03-15</li>
-                <!-- More bookings can be added dynamically -->
+                <li th:each="booking : ${bookings}">
+                    Booking ID: <span th:text="${booking.id}"></span>,
+                    Customer ID: <span th:text="${booking.customerId}"></span>,
+                    Room ID: <span th:text="${booking.roomId}"></span>,
+                    Date: <span th:text="${#dates.format(booking.date, 'yyyy-MM-dd')}"></span>
+                </li>
             </ul>
         </div>
         
@@ -29,7 +32,15 @@
         <div class="form">
             <h2>Add Booking</h2>
             <form th:action="@{/addBooking}" method="post">
-                <!-- Booking form fields -->
+                <label for="customerId">Customer ID:</label>
+                <input type="text" id="customerId" name="customerId"><br>
+                
+                <label for="roomId">Room ID:</label>
+                <input type="text" id="roomId" name="roomId"><br>
+                
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date"><br>
+                
                 <button type="submit">Add Booking</button>
             </form>
         </div>
