@@ -23,19 +23,19 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
-	private final CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
-	
+
     @Autowired
     public CustomerController(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-	@GetMapping
-	public String listCustomers(Model model) {
-		//model.addAttribute("customers", customerService.getAllCustomers());
-		return "customers"; // Refers to `customers.html`
-	}
+    @GetMapping
+    public String listCustomers(Model model) {
+        //model.addAttribute("customers", customerService.getAllCustomers());
+        return "customers"; // Refers to `customers.html`
+    }
 
     @PostMapping
     public String addCustomer(@RequestParam("name") String name,
@@ -46,25 +46,28 @@ public class CustomerController {
         customer.setName(name);
         customer.setPhoneNumber(phoneNumber);
         customer.setEmail(email);
+
+        // Save the customer to the repository
+        Customer savedCustomer = customerRepository.save(customer);
+
+        // Retrieve the list of customers from the session
         List<Customer> customerList = (List<Customer>) session.getAttribute("customerList");
         if (customerList == null) {
-        	customerList = new ArrayList<>();
+            customerList = new ArrayList<>();
         }
-        
-        Customer savedCustomer = customerRepository.save(customer);
-     // Now you can access the generated ID
-	    Long generatedId = savedCustomer.getId();
-	    System.out.println("Generated ID: " + generatedId);
-	    
-        customerList.add(customer);
+
+        // Add the customer to the list
+        customerList.add(savedCustomer);
+
+        // Update the session attribute
         session.setAttribute("customerList", customerList);
-        
-        return "redirect:/customers/rooms";
+
+        return "redirect:/customers";
     }
-	
-    
+
+
     @GetMapping("/home")
     public String displayCustomerpage() {
-    	return "homepage";
+        return "homepage";
     }
 }

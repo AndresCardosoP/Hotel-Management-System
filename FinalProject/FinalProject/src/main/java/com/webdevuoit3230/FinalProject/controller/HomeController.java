@@ -14,28 +14,28 @@ import java.util.List;
 @RequestMapping("/home")
 public class HomeController {
     @GetMapping
-    public String displayTaskForm() {
+    public String displayHomepage() {
         return "homepage";
     }
-    
+
     @GetMapping("/customers")
     public String displayCustomerpage() {
-    	return "customers";
+        return "customers";
     }
-    
-    @GetMapping("/service")
+
+    @GetMapping("/services")
     public String displayServicepage() {
-    	return "services";
+        return "services";
     }
-    
-    @GetMapping("/booking")
+
+    @GetMapping("/bookings")
     public String displayBookingpage() {
-    	return "bookings";
+        return "bookings";
     }
-    
+
     @GetMapping("/rooms")
     public String displayRoompage() {
-    	return "rooms";
+        return "rooms";
     }
-    
 }
+
