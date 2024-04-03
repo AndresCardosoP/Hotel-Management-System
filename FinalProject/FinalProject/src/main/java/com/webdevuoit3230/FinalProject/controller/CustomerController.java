@@ -55,15 +55,52 @@ public class CustomerController {
         if (customerList == null) {
             customerList = new ArrayList<>();
         }
+        
 
+        
         // Add the customer to the list
         customerList.add(savedCustomer);
+        
 
         // Update the session attribute
         session.setAttribute("customerList", customerList);
 
-        return "redirect:/customers";
+        return "redirect:/customers/successful/rooms";
     }
+
+// Get Customer information from array
+//  @GetMapping("/rooms")
+//  public String displayHomePage(HttpSession session) {
+//  	List<Customer> customerList = (List<Customer>) session.getAttribute("customerList");
+//      if (customerList == null || customerList.isEmpty()) {
+//          System.out.println("No tasks found.");
+//      } else {
+//      	for (Customer customer : customerList) {
+//      	    System.out.println("Customer Name: " + customer.getName());
+//      	    System.out.println("Customer Phone Number: " + customer.getPhoneNumber());
+//      	    System.out.println("Customer Email: " + customer.getEmail());
+//      	}
+//      }
+//      return "rooms"; 
+//  }
+  
+    // Get customer information from database
+    @GetMapping("/successful")
+    public String getAllCustomers(Model model) {
+        // Retrieve all customers from the repository
+        Iterable<Customer> customers = customerRepository.findAll();
+        
+        // Iterate through each customer and print out their details
+        for (Customer customer : customers) {
+    	    System.out.println("Generated ID: " + customer.getId());
+            System.out.println("Customer Name from Database: " + customer.getName());
+            System.out.println("Customer phone number from Database: " + customer.getPhoneNumber());
+            System.out.println("Customer email from Database: " + customer.getEmail());
+        }
+        
+        return "rooms"; 
+    }
+    
 
 
     @GetMapping("/home")
