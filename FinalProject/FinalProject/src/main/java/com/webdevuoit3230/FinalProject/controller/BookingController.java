@@ -40,4 +40,9 @@ public class BookingController {
         }
         return "redirect:/bookings";
     }
+    
+    @GetMapping("/service")
+    public String servicesBooking(Model model) {
+    	return "/services";
+    }
 }
