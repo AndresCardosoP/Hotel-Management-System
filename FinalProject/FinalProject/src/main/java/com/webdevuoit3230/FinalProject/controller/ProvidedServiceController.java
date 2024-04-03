@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/service")
+@RequestMapping("/services")
 public class ProvidedServiceController {
 	
 	@GetMapping

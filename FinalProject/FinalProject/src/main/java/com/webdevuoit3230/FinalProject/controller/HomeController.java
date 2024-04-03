@@ -37,5 +37,10 @@ public class HomeController {
     public String displayRoompage() {
         return "rooms";
     }
+    
+    @GetMapping("/tasks")
+    public String displayTaskpage() {
+        return "rooms";
+    }
 }
 

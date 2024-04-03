@@ -133,3 +133,9 @@ form button:hover {
     display: block; /* Ensure image fills container */
 }
 
+.listing ul li img 
+{
+	height: 25%;
+	width: 25%;
+}
+

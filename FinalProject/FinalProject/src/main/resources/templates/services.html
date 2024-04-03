@@ -18,6 +18,20 @@
             list-style-type: none;
             padding: 0; /* Optional: Remove default padding */
         }
+	    .listing {
+	        font-family: Arial, sans-serif;
+	    }
+	    .listing ul {
+	        list-style-type: none;
+	        padding: 0;
+	    }
+	    .listing li {
+	        margin-bottom: 20px;
+	    }
+	    .highlighted {
+	        border: 2px solid blue;
+	    }
+
     </style>
 </head>
 <body>
@@ -34,12 +48,16 @@
             <h2>List of Services</h2>
             <ul>
                 <li>
-                    <img src="/cleaning.jpg" alt="Cleaning">
-                    <h3>Cleaning</h3>
+                    <img src="/cleaning.jpg" alt="Cleaning" onclick="highlight(this)">
+                    <h3>Room Cleaning Service</h3>
                 </li>
                 <li>
-                    <img src="/room-service.jpg" alt="Room Service">
+                    <img src="/room-service.jpg" alt="Room Service" onclick="highlight(this)">
                     <h3>Room Service</h3>
+                </li>
+                <li>
+                    <img src="/laundry.jpg" alt="Laundry" onclick="highlight(this)">
+                    <h3>Laundry and Dry Cleaning Services</h3>
                 </li>
                 <!-- More services can be added dynamically -->
             </ul>
@@ -49,11 +67,20 @@
         <div class="form">
             <h2>Add Service</h2>
             <form th:action="@{/addService}" method="post">
-                <label for="serviceName">Service Name:</label>
+                <label for="serviceName">Customer ID:</label>
                 <input type="text" id="serviceName" name="serviceName" required>
-                <button type="submit">Add Service</button>
+                <button type="submit">Enter</button>
             </form>
         </div>
     </div>
+    <script>
+        function highlight(img) {
+            var images = document.querySelectorAll('.listing img');
+            images.forEach(function(image) {
+                image.classList.remove('highlighted');
+            });
+            img.classList.add('highlighted');
+        }
+    </script>
 </body>
 </html>
