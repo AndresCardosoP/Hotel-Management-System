@@ -10,26 +10,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.webdevuoit3230.FinalProject.model.Customer;
+import com.webdevuoit3230.FinalProject.repository.CustomerRepository;
 import com.webdevuoit3230.FinalProject.model.Task;
 import com.webdevuoit3230.FinalProject.service.CustomerService;
 
 import jakarta.servlet.http.HttpSession;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/customers")
 public class CustomerController {
-	private final CustomerService customerService;
+	private final CustomerRepository customerRepository;
 
-	@Autowired
-	public CustomerController(CustomerService customerService) {
-		this.customerService = customerService;
-	}
+	
+    @Autowired
+    public CustomerController(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
 	@GetMapping
 	public String listCustomers(Model model) {
-		model.addAttribute("customers", customerService.getAllCustomers());
+		//model.addAttribute("customers", customerService.getAllCustomers());
 		return "customers"; // Refers to `customers.html`
 	}
 
@@ -46,26 +50,18 @@ public class CustomerController {
         if (customerList == null) {
         	customerList = new ArrayList<>();
         }
+        
+        Customer savedCustomer = customerRepository.save(customer);
+     // Now you can access the generated ID
+	    Long generatedId = savedCustomer.getId();
+	    System.out.println("Generated ID: " + generatedId);
+	    
         customerList.add(customer);
         session.setAttribute("customerList", customerList);
         
         return "redirect:/customers/rooms";
     }
 	
-    @GetMapping("/rooms")
-    public String displayHomePage(HttpSession session) {
-    	List<Customer> customerList = (List<Customer>) session.getAttribute("customerList");
-        if (customerList == null || customerList.isEmpty()) {
-            System.out.println("No tasks found.");
-        } else {
-        	for (Customer customer : customerList) {
-        	    System.out.println("Customer Name: " + customer.getName());
-        	    System.out.println("Customer Phone Number: " + customer.getPhoneNumber());
-        	    System.out.println("Customer Email: " + customer.getEmail());
-        	}
-        }
-        return "rooms"; 
-    }
     
     @GetMapping("/home")
     public String displayCustomerpage() {
