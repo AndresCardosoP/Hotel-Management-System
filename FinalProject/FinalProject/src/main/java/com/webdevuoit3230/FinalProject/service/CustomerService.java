@@ -24,4 +24,8 @@ public class CustomerService {
     public Customer addCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
+    
+    public Customer findById(Long id) {
+        return customerRepository.findById(id).orElse(null); // This will return a customer or null if not found
+    }
 }
