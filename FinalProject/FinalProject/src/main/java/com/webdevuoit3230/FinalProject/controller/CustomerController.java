@@ -65,7 +65,7 @@ public class CustomerController {
         // Update the session attribute
         session.setAttribute("customerList", customerList);
 
-        return "redirect:/customers/successful/rooms";
+        return "redirect:/customers";
     }
 
 // Get Customer information from array
