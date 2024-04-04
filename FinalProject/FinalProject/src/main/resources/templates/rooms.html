@@ -21,27 +21,42 @@
         <!-- Room listing -->
         <div class="listing">
             <h2>List of Rooms</h2>
-            <ul>
-                <li th:each="room : ${rooms}">
-                    <span th:text="${room.roomNumber}">Room Number</span> - 
-                    Type: <span th:text="${room.type}">Type</span> - 
-                    Price: <span th:text="${room.price}">Price</span>
-                </li>
-            </ul>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Room Number</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="room : ${rooms}">
+                        <td th:text="${room.roomNumber}">Room Number</td>
+                        <td th:text="${room.type}">Type</td>
+                        <td th:text="${room.price}">Price</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         
         <!-- Add room form -->
         <div class="form">
             <h2>Add Room</h2>
             <form th:action="@{/rooms}" method="post" th:object="${newRoom}">
-                <label for="roomNumber">Room Number:</label>
-                <input type="text" id="roomNumber" name="roomNumber" required th:field="*{roomNumber}"><br>
+                <div class="form-group">
+                    <label for="roomNumber">Room Number:</label>
+                    <input type="text" id="roomNumber" name="roomNumber" required th:field="*{roomNumber}">
+                </div>
                 
-                <label for="type">Type:</label>
-                <input type="text" id="type" name="type" required th:field="*{type}"><br>
+                <div class="form-group">
+                    <label for="type">Type:</label>
+                    <input type="text" id="type" name="type" required th:field="*{type}">
+                </div>
                 
-                <label for="price">Price:</label>
-                <input type="number" id="price" name="price" required th:field="*{price}"><br>
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" required th:field="*{price}">
+                </div>
                 
                 <button type="submit">Add Room</button>
             </form>
