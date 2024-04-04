@@ -29,4 +29,10 @@ public class RoomController {
         roomService.saveRoom(room);
         return "redirect:/rooms";
     }
+    
+    @GetMapping("/services")
+    public String GetServices(Model model)
+    {
+    	return "services";
+    }
 }

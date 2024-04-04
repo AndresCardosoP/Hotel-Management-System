@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.webdevuoit3230.FinalProject.model.Customer;
 import com.webdevuoit3230.FinalProject.repository.CustomerRepository;
-import com.webdevuoit3230.FinalProject.model.Task;
 import com.webdevuoit3230.FinalProject.service.CustomerService;
 
 import jakarta.servlet.http.HttpSession;

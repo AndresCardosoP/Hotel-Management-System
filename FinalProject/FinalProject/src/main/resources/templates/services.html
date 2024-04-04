@@ -5,34 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services</title>
     <link rel="stylesheet" type="text/css" href="/style.css"/>
-    <style>
-        /* Corrected CSS selector */
-        .listing img {
-            height: 400px; /* Set the height to 400 pixels */
-            width: auto; /* Let the width adjust based on the aspect ratio */
-            max-width: 100%; /* Ensure the width does not exceed the container width */
-        }
-
-        /* Remove bullet points from the list */
-        .listing ul {
-            list-style-type: none;
-            padding: 0; /* Optional: Remove default padding */
-        }
-	    .listing {
-	        font-family: Arial, sans-serif;
-	    }
-	    .listing ul {
-	        list-style-type: none;
-	        padding: 0;
-	    }
-	    .listing li {
-	        margin-bottom: 20px;
-	    }
-	    .highlighted {
-	        border: 2px solid blue;
-	    }
-
-    </style>
 </head>
 <body>
     <div class="container">
@@ -40,6 +12,9 @@
         <nav>
             <ul>
                 <li><a href="/home">Home</a></li>
+                <li><a href="/bookings">Bookings</a></li>
+                <li><a href="/rooms">Rooms</a></li>
+                <li><a href="/customers"> Customers</a></li>
             </ul>
         </nav>
         
@@ -48,15 +23,15 @@
             <h2>List of Services</h2>
             <ul>
                 <li>
-                    <img src="/cleaning.jpg" alt="Cleaning" onclick="highlight(this)">
+                    <img src="/cleaning.jpg" alt="Cleaning" onclick="highlight(this, 'Cleaning Service')">
                     <h3>Cleaning Service</h3>
                 </li>
                 <li>
-                    <img src="/room-service.jpg" alt="Room Service" onclick="highlight(this)">
+                    <img src="/room-service.jpg" alt="Room Service" onclick="highlight(this, 'Room Service')">
                     <h3>Room Service</h3>
                 </li>
                 <li>
-                    <img src="/laundry.jpg" alt="Laundry" onclick="highlight(this)">
+                    <img src="/laundry.jpg" alt="Laundry" onclick="highlight(this, 'Laundry and Dry Cleaning Services')">
                     <h3>Laundry and Dry Cleaning Services</h3>
                 </li>
                 <!-- More services can be added dynamically -->
@@ -66,20 +41,25 @@
         <!-- Add service form -->
         <div class="form">
             <h2>Add Service</h2>
-            <form th:action="@{/addService}" method="post">
+            <form action="/services" method="post">
                 <label for="serviceName">Customer ID:</label>
                 <input type="text" id="serviceName" name="serviceName" required>
+                <!-- Hidden input to store the selected service -->
+                <input type="hidden" id="selectedService" name="selectedService">
                 <button type="submit">Enter</button>
             </form>
         </div>
     </div>
     <script>
-        function highlight(img) {
+        function highlight(img, service) {
             var images = document.querySelectorAll('.listing img');
             images.forEach(function(image) {
                 image.classList.remove('highlighted');
             });
             img.classList.add('highlighted');
+            
+            // Set the value of the hidden input to the selected service
+            document.getElementById('selectedService').value = service;
         }
     </script>
 </body>

@@ -165,3 +165,45 @@ form button:hover {
 .table tbody tr:hover {
     background-color: #ddd;
 }
+
+
+ /* Corrected CSS selector */
+ .listing img {
+     height: 400px; /* Set the height to 400 pixels */
+     width: auto; /* Let the width adjust based on the aspect ratio */
+     max-width: 100%; /* Ensure the width does not exceed the container width */
+ }
+
+ /* Remove bullet points from the list */
+ .listing ul {
+     list-style-type: none;
+     padding: 0; /* Optional: Remove default padding */
+   }
+.listing {
+    font-family: Arial, sans-serif;
+}
+.listing ul {
+    list-style-type: none;
+    padding: 0;
+}
+.listing li {
+    margin-bottom: 20px;
+}
+.highlighted {
+    border: 2px solid blue;
+}
+
+
+.AvailableRooms {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.AvailableRooms img {
+	padding-top: 10px;
+    width: 380px;
+    height: auto;
+}
+.AvailableRooms p {
+    text-align: center;
+}

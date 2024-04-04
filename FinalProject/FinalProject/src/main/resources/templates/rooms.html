@@ -13,8 +13,8 @@
             <ul>
                 <li><a th:href="@{/home}">Home</a></li>
                 <li><a th:href="@{/bookings}">Bookings</a></li>
-                <li><a href="/customers">Customers</a></li>
-                <li><a href="/services">Services</a></li>
+                <li><a th:href="@{/customers}">Customers</a></li>
+                <li><a th:href="@{/services}">Services</a></li>
             </ul>
         </nav>
         
@@ -37,6 +37,18 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="AvailableRooms">
+		        <div>
+		            <img src="/single.png" alt="Single Room">
+		            <p>Single</p>
+		            <p>$120</p>
+		        </div>
+		        <div>
+		            <img src="/double.png" alt="Double Room">
+		            <p>Double</p>
+		            <p>$180</p>
+		        </div>
+    		</div>
         </div>
         
         <!-- Add room form -->
