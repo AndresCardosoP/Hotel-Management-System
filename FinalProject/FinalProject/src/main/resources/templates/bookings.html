@@ -13,13 +13,12 @@
             <ul>
                 <li><a th:href="@{/}">Home</a></li>
                 <li><a th:href="@{/rooms}">Rooms</a></li>
-<<<<<<< HEAD
                 <li><a th:href="@{/customers}">Customers</a></li>
                 <li><a th:href="@{/services}">Services</a></li>
-=======
+
                 <li><a href="/customers">Customers</a></li>
                 <li><a href="/services">Services</a></li>
->>>>>>> 98fe571310ddaeac80f1562a02411926a620a4a8
+
             </ul>
         </nav>
 
@@ -50,7 +49,7 @@
             <form th:action="@{/bookings}" method="post" th:object="${newBooking}">
                 <div class="form-group">
                     <label for="roomId">Room:</label>
-                    <select id="roomId" name="room.id" required>
+                    <select id="roomId" name="roomId" required>
                         <option value="" disabled selected>Select a room</option>
                         <option th:each="room : ${rooms}"
                                 th:value="${room.id}"
@@ -62,7 +61,7 @@
 
                 <div class="form-group">
                     <label for="customerId">Customer:</label>
-                    <select id="customerId" name="customer.id" required>
+                    <select id="customerId" name="customerId" required>
                         <option value="" disabled selected>Select a customer</option>
                         <option th:each="customer : ${customers}"
                                 th:value="${customer.id}"

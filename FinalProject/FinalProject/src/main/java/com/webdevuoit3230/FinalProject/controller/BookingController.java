@@ -48,14 +48,9 @@ public class BookingController {
         }
         return "redirect:/bookings"; // Redirect back to the bookings page after adding a booking
     }
-<<<<<<< HEAD
-
-    // Additional methods and logic as needed
-=======
     
     @GetMapping("/service")
     public String servicesBooking(Model model) {
     	return "/services";
     }
->>>>>>> 98fe571310ddaeac80f1562a02411926a620a4a8
 }
