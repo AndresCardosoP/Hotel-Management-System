@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooms</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var typeInput = document.getElementById('type');
+        var priceInput = document.getElementById('price');
+
+        if (typeInput.value === 'Single') {
+            priceInput.value = 120;
+        } else if (typeInput.value === 'Double') {
+            priceInput.value = 180;
+        }
+
+        typeInput.addEventListener('change', function () {
+            if (this.value === 'Single') {
+                priceInput.value = 120;
+            } else if (this.value === 'Double') {
+                priceInput.value = 180;
+            }
+        });
+    });
+</script>
+
 </head>
 <body>
     <div class="container">
@@ -17,7 +38,23 @@
                 <li><a th:href="@{/services}">Services</a></li>
             </ul>
         </nav>
-        
+
+        <!-- Room types with images -->
+        <div class="room-types">
+            <section class="room-type">
+                <img src="/single.png" alt="Single Room" style="width:auto; max-width:80%; height:auto;">
+                <h3>Single Rooms (1-200)</h3>
+                <p>Perfect for solo travelers, our cozy single rooms offer comfort and privacy.</p>
+                <p>Starting at $120 per night.</p>
+            </section>
+            <section class="room-type">
+                <img src="/double.png" alt="Double Room" style="width:auto; max-width:80%; height:auto;">
+                <h3>Double Rooms (201-300)</h3>
+                <p>Spacious and luxurious, the double rooms are ideal for couples or friends.</p>
+                <p>Starting at $180 per night.</p>
+            </section>
+        </div>
+
         <!-- Room listing -->
         <div class="listing">
             <h2>List of Rooms</h2>
@@ -37,20 +74,8 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="AvailableRooms">
-		        <div>
-		            <img src="/single.png" alt="Single Room">
-		            <p>Single</p>
-		            <p>$120</p>
-		        </div>
-		        <div>
-		            <img src="/double.png" alt="Double Room">
-		            <p>Double</p>
-		            <p>$180</p>
-		        </div>
-    		</div>
         </div>
-        
+
         <!-- Add room form -->
         <div class="form">
             <h2>Add Room</h2>
@@ -59,19 +84,23 @@
                     <label for="roomNumber">Room Number:</label>
                     <input type="text" id="roomNumber" name="roomNumber" required th:field="*{roomNumber}">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="type">Type:</label>
-                    <input type="text" id="type" name="type" required th:field="*{type}">
+                    <select id="type" name="type" required th:field="*{type}">
+                        <option value="Single">Single</option>
+                        <option value="Double">Double</option>
+                    </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="price">Price:</label>
-                    <input type="number" id="price" name="price" required th:field="*{price}">
+                    <input type="number" id="price" name="price" required th:field="*{price}" readonly>
                 </div>
-                
+
                 <button type="submit">Add Room</button>
             </form>
+            <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
         </div>
     </div>
 </body>

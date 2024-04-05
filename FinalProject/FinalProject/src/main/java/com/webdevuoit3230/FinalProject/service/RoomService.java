@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RoomService {
@@ -20,7 +21,16 @@ public class RoomService {
         return roomRepository.findAll();
     }
 
+    public Optional<Room> findRoomByRoomNumber(String roomNumber) {
+        return roomRepository.findByRoomNumber(roomNumber);
+    }
+
     public Room saveRoom(Room room) {
+        // Check if a room with the given number already exists
+        Optional<Room> existingRoom = findRoomByRoomNumber(room.getRoomNumber());
+        if (existingRoom.isPresent()) {
+            throw new IllegalArgumentException("Room number " + room.getRoomNumber() + " already exists.");
+        }
         return roomRepository.save(room);
     }
 
