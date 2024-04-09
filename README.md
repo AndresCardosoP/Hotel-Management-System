@@ -60,6 +60,9 @@ The project follows a structured package organization for clarity and maintainab
 - `src/main/resources`
   - `templates`: Contains Thymeleaf templates for the frontend.
   - `static`: Contains static resources like CSS for styling.
+ 
+![image](https://github.com/MirisanRavindran/webdevfinalproject/assets/91202768/d120fdd5-ab85-428d-b7ed-6827d13974da)
+  
 
 ## Features
 The system allows managing:
