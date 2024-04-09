@@ -42,7 +42,7 @@
         <div class="form">
             <h2>Add Service</h2>
             <form action="/services" method="post">
-                <label for="serviceName">Customer ID:</label>
+                <label for="serviceName">Customer Name:</label>
                 <input type="text" id="serviceName" name="serviceName" required>
                 <!-- Hidden input to store the selected service -->
                 <input type="hidden" id="selectedService" name="selectedService">
@@ -50,17 +50,6 @@
             </form>
         </div>
     </div>
-    <script>
-        function highlight(img, service) {
-            var images = document.querySelectorAll('.listing img');
-            images.forEach(function(image) {
-                image.classList.remove('highlighted');
-            });
-            img.classList.add('highlighted');
-            
-            // Set the value of the hidden input to the selected service
-            document.getElementById('selectedService').value = service;
-        }
-    </script>
+    <script src="/script.js"> </script>
 </body>
 </html>

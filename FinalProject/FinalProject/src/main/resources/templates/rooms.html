@@ -5,27 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooms</title>
     <link rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
-    <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var typeInput = document.getElementById('type');
-        var priceInput = document.getElementById('price');
-
-        if (typeInput.value === 'Single') {
-            priceInput.value = 120;
-        } else if (typeInput.value === 'Double') {
-            priceInput.value = 180;
-        }
-
-        typeInput.addEventListener('change', function () {
-            if (this.value === 'Single') {
-                priceInput.value = 120;
-            } else if (this.value === 'Double') {
-                priceInput.value = 180;
-            }
-        });
-    });
-</script>
-
 </head>
 <body>
     <div class="container">
@@ -103,5 +82,6 @@
             <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
         </div>
     </div>
+    <script src="/script.js"></script>
 </body>
 </html>
