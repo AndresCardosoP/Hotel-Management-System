@@ -7,11 +7,11 @@ import jakarta.persistence.Id;
 
 public class ProvidedService {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Primary key generation strategy.
     private long id;
-    private String name;
-    private String description;
-    private double price;
+    private String name; // Service name.
+    private String description; // Service description.
+    private double price; // Service price.
 
     // Constructor
     public ProvidedService() {

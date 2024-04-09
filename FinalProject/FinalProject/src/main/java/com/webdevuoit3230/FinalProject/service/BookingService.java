@@ -7,15 +7,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Service // Marks this class as a Spring service.
 public class BookingService {
     private final BookingRepository bookingRepository;
 
-    @Autowired
+    @Autowired // Autowires the BookingRepository.
     public BookingService(BookingRepository bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
 
+    // Methods for adding, finding, and retrieving customers.
     public List<Booking> findAllBookings() {
         return bookingRepository.findAll();
     }

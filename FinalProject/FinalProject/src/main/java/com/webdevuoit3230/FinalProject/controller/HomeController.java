@@ -1,46 +1,44 @@
 package com.webdevuoit3230.FinalProject.controller;
 
-import jakarta.servlet.http.HttpSession;
+// Spring MVC and session handling imports
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import java.util.ArrayList;
-import java.util.List;
 
-
+// Marks this class as a Controller with URL mappings handled at "/home"
 @Controller
 @RequestMapping("/home")
 public class HomeController {
+    // Displays the main homepage
     @GetMapping
     public String displayHomepage() {
-        return "homepage";
+        return "homepage"; // Points to `homepage.html` Thymeleaf template
     }
 
+    // Navigation methods to various pages (These methods redirect to respective
+    // pages)
     @GetMapping("/customers")
     public String displayCustomerpage() {
-        return "customers";
+        return "customers"; // Points to `customers.html`
     }
 
     @GetMapping("/services")
     public String displayServicepage() {
-        return "services";
+        return "services"; // Points to `services.html`
     }
 
     @GetMapping("/bookings")
     public String displayBookingpage() {
-        return "bookings";
+        return "bookings"; // Points to `bookings.html`
     }
 
     @GetMapping("/rooms")
     public String displayRoompage() {
-        return "rooms";
+        return "rooms"; // Points to `rooms.html`
     }
-    
+
     @GetMapping("/tasks")
     public String displayTaskpage() {
-        return "rooms";
+        return "rooms"; // Example, typically would point to a `tasks.html`
     }
 }
-

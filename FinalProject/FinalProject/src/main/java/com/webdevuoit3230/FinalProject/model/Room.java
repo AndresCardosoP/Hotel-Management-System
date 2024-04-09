@@ -7,18 +7,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import java.util.List;
 
-@Entity
+@Entity // Marks the class as a JPA entity.
 public class Room {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Primary key generation strategy.
     private Long id;
-    private String roomNumber;
-    private String type;
-    private Double price;
-    private boolean isAvailable; // Add this field
+    private String roomNumber; // Room number.
+    private String type; // Room type.
+    private Double price; // Room price.
+    private boolean isAvailable; // Availability status.
 
-    @OneToMany(mappedBy = "room")
-    private List<Booking> bookings;
+    @OneToMany(mappedBy = "room") // One-to-Many relationship with Booking.
+    private List<Booking> bookings; // List of bookings for the room.
 
     // Constructors, Getters, and Setters
 

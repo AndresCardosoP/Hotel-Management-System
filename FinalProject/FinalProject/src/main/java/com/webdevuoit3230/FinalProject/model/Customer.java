@@ -5,14 +5,14 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity // Marks the class as a JPA entity.
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Primary key generation strategy.
     private Long id;
-    private String name;
-    private String phoneNumber;
-    private String email;
+    private String name; // Customer name.
+    private String phoneNumber; // Customer phone number.
+    private String email; // Customer email.
 
     // Constructors, getters, and setters
 
