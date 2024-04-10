@@ -41,3 +41,9 @@ function highlight(img, service) {
     });
     document.getElementById('selectedService').value = selectedServices.join(', ');
 }
+
+
+function selectService(serviceType) {
+    document.getElementById('selectedService').value = serviceType;
+    document.getElementById('selectedServiceDisplay').innerText = "Selected Service Type: " + serviceType;
+}

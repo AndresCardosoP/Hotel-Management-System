@@ -5,26 +5,38 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class ProvidedService {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Primary key generation strategy.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String name; // Service name.
-    private String description; // Service description.
-    private double price; // Service price.
+    private String name;
+    private String description;
+    private String type;
+    private double price;
 
     // Constructor
     public ProvidedService() {
     }
 
-    public ProvidedService(long id, String name, String description, double price) {
+    public ProvidedService(long id, String name, String description, double price, String type) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.type = type;
     }
 
     // Getters and Setters
+    
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
     public long getId() {
         return id;
     }
