@@ -26,45 +26,61 @@
 		            <tr>
 		                <th>Customer</th>
 		                <th>Room Number</th>
-		                <th>Service Type</th> <!-- Added Service Type column -->
+		                <th>Service Type</th>
+		                <th>Price</th>
 		            </tr>
 		        </thead>
 		        <tbody>
 		            <tr th:each="service : ${services}">
 		                <td th:text="${service.getName}">Name</td>
 		                <td th:text="${service.getDescription}">Room Number</td>
-		                <td th:text="${service.getType}">Service Type</td> <!-- Display Service Type -->
+		                <td th:text="${service.getType}">Service Type</td>
+		                <td th:text="${service.getPrice}">Price</td>
 		            </tr>
                 </tbody>
             </table>
             <h2>Available Services</h2>
-            <ul>
-                <li>
-                    <img src="/cleaning.jpg" alt="Cleaning" onclick="highlight(this, 'Cleaning Service')">
-                    <h3>Cleaning Service</h3>
-                </li>
-                <li>
-                    <img src="/room-service.jpg" alt="Room Service" onclick="highlight(this, 'Room Service')">
-                    <h3>Room Service</h3>
-                </li>
-                <li>
-                    <img src="/laundry.jpg" alt="Laundry" onclick="highlight(this, 'Laundry and Dry Cleaning Services')">
-                    <h3>Laundry and Dry Cleaning Services</h3>
-                </li>
-                <!-- More services can be added dynamically -->
-            </ul>
+				<ul>
+				    <li>
+				        <img src="/cleaning.jpg" alt="Cleaning" onclick="highlight(this, 'Cleaning Service', 20.0)" Serviceprice="20.0">
+				        <h3>Cleaning Service: $20</h3>
+				    </li>
+				    <li>
+				        <img src="/room-service.jpg" alt="Room Service" onclick="highlight(this, 'Room Service', 35.0)" Serviceprice="35.0">
+				        <h3>Room Service: $35</h3>
+				    </li>
+				    <li>
+				        <img src="/laundry.jpg" alt="Laundry" onclick="highlight(this, 'Laundry and Dry Cleaning Services', 25.0)" Serviceprice="25.0">
+				        <h3>Laundry and Dry Cleaning Services: $25</h3>
+				    </li>
+				    <!-- More services can be added dynamically -->
+				</ul>
         </div>
         
 		<div class="form">
 		    <h2>Add Service</h2>
-		    <form th:action="@{/services}" method="post">
-		        <label for="serviceName">Customer Name:</label>
-		        <input type="text" id="serviceName" name="serviceName" required>
-		        <!-- Hidden input to store the selected service -->
-		        <input type="hidden" id="selectedService" name="selectedService">
-		        <div id="selectedServiceDisplay"></div>
-		        <button type="submit">Enter</button>
-		    </form>
+				<form th:action="@{/services}" method="post">
+				    <label for="serviceName">Customer Name:</label>
+				    <select id="serviceName" name="serviceName" required>
+				    	<option value="" disabled selected>Select a customer</option>
+	                        <option th:each="customer : ${customers}"
+	                                th:value="${customer.id}"
+	                                th:text="${customer.name}">
+	                            Customer Name
+                        </option>
+                    </select>
+				    
+				    <!-- Hidden input to store the selected service -->
+				    <input type="hidden" id="selectedService" name="selectedService">
+				    
+				    <!-- Display field for the price of the selected service -->
+				    <div>
+				        <label for="servicePrice">Price:</label>
+				        <input type="text" id="servicePrice" name="servicePrice" readonly>
+				    </div>
+				    
+				    <button type="submit">Enter</button>
+				</form>
 		    <p th:if="${errorMessage}" th:text="${errorMessage}" class="error-message"></p>
 		</div>
     </div>

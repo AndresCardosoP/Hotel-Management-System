@@ -29,17 +29,26 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-function highlight(img, service) {
+var Serviceprice = parseFloat(img.getAttribute('Serviceprice'));
+
+function highlight(img, service, Serviceprice) {
     // Toggle the highlighted class
     img.classList.toggle('highlighted');
     
     // Update the value of the hidden input based on selected images
     var selectedServices = [];
+    var totalPrice = 0;
     var highlightedImages = document.querySelectorAll('.listing img.highlighted');
     highlightedImages.forEach(function(image) {
         selectedServices.push(image.getAttribute('alt'));
+        totalPrice += parseFloat(image.getAttribute('Serviceprice'));
     });
+    
+    // Update the value of the hidden input for selected services
     document.getElementById('selectedService').value = selectedServices.join(', ');
+    
+    // Update the value of the input field for the total price
+    document.getElementById("servicePrice").value = totalPrice.toFixed(2);
 }
 
 
