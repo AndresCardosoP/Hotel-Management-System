@@ -39,7 +39,6 @@ public class ProvidedServiceController {
     @GetMapping("/list")
     public String listServices(Model model) {
         model.addAttribute("services", providedServiceService.findAllServices());
-        model.addAttribute("customers", customerService.getAllCustomers()); // Adds list of all customers to the model.
         return "services";
     }
 
@@ -67,5 +66,4 @@ public class ProvidedServiceController {
         // Redirect to the list endpoint to refresh the page and display the updated list
         return "redirect:/services";
     }
-
 }
