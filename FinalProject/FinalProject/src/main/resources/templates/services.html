@@ -60,15 +60,8 @@
 		<div class="form">
 		    <h2>Add Service</h2>
 				<form th:action="@{/services}" method="post">
-				    <label for="serviceId">Customer Name:</label>
-				    <select id="serviceId" name="serviceId" required>
-				    	<option value="" disabled selected>Select a customer</option>
-	                        <option th:each="customer : ${customers}"
-	                                th:value="${customer.id}"
-	                                th:text="${customer.name}">
-	                            Customer Name
-                        </option>
-                    </select>
+				    <label for="serviceName">Customer Name:</label>
+				    <input type="text" id="serviceName" name="serviceName" required>
 				    
 				    <!-- Hidden input to store the selected service -->
 				    <input type="hidden" id="selectedService" name="selectedService">
